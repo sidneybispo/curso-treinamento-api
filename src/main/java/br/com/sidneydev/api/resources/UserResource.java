@@ -17,13 +17,17 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/user")
 public class UserResource {
 
+    public static final String ID = "/{id}";
+    public static final String ID1 = "/{id}";
+    public static final String ID2 = "/{id}";
+    public static final String ID3 = "/{id}";
     @Autowired
     private ModelMapper mapper;
 
     @Autowired
     private UserService service;
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = ID3)
     public ResponseEntity<UserDTO> findById(@PathVariable Integer id){
         return ResponseEntity.ok().body(mapper.map(service.findById(id), UserDTO.class));
     }
@@ -37,13 +41,19 @@ public class UserResource {
     @PostMapping
     public ResponseEntity<UserDTO> create(@RequestBody UserDTO obj){
         URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{id}").buildAndExpand(service.create(obj).getId()).toUri();
+                .fromCurrentRequest().path(ID2).buildAndExpand(service.create(obj).getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = ID1)
     public ResponseEntity<UserDTO> update(@PathVariable Integer id, @RequestBody UserDTO obj){
         obj.setId(id);
         return ResponseEntity.ok().body(mapper.map(service.update(obj), UserDTO.class));
+    }
+
+    @DeleteMapping(value = ID)
+    public ResponseEntity<UserDTO> delete(@PathVariable Integer id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

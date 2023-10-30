@@ -1,13 +1,16 @@
 package br.com.sidneydev.api;
 
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
 
 @SpringBootTest
 class ApiApplicationTests {
 
     @Test
-    void contextLoads() {
+    void main() {
+        ApiApplication.main(new String[] {});
     }
 
 }

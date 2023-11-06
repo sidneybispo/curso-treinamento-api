@@ -5,17 +5,14 @@ import br.com.sidneydev.api.domain.dto.UserDTO;
 import br.com.sidneydev.api.repositories.UserRepository;
 import br.com.sidneydev.api.services.exceptions.DataIntegratyViolationException;
 import br.com.sidneydev.api.services.exceptions.ObjectNotFoundException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Optional;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
@@ -31,7 +28,8 @@ class UserServiceImplTest {
     private static final String NAME     = "sidney";
     private static final String EMAIL    = "sidney@mail.com";
     private static final String PASSWORD = "123";
-    public static final int INDEX = 0;
+    public static final Integer INDEX = 0;
+
     public static final String E_MAIL_JA_CADASTRADO_NO_SISTEMA = "E-mail já cadastrado no sistema";
     public static final String OBJETO_NAO_ENCONTRADO1 = "Objeto nao encontrado";
 

@@ -18,16 +18,14 @@ import java.util.stream.Collectors;
 public class UserResource {
 
     public static final String ID = "/{id}";
-    public static final String ID1 = "/{id}";
-    public static final String ID2 = "/{id}";
-    public static final String ID3 = "/{id}";
+
     @Autowired
     private ModelMapper mapper;
 
     @Autowired
     private UserService service;
 
-    @GetMapping(value = ID3)
+    @GetMapping(value = ID)
     public ResponseEntity<UserDTO> findById(@PathVariable Integer id){
         return ResponseEntity.ok().body(mapper.map(service.findById(id), UserDTO.class));
     }
@@ -41,11 +39,11 @@ public class UserResource {
     @PostMapping
     public ResponseEntity<UserDTO> create(@RequestBody UserDTO obj){
         URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequest().path(ID2).buildAndExpand(service.create(obj).getId()).toUri();
+                .fromCurrentRequest().path(ID).buildAndExpand(service.create(obj).getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping(value = ID1)
+    @PutMapping(value = ID)
     public ResponseEntity<UserDTO> update(@PathVariable Integer id, @RequestBody UserDTO obj){
         obj.setId(id);
         return ResponseEntity.ok().body(mapper.map(service.update(obj), UserDTO.class));
